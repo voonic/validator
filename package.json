@@ -1,0 +1,15 @@
+{
+  "name": "@voonic/validator",
+  "version": "1.0.0",
+  "description": "Allows to validate simple html fields",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "voonic",
+    "validator"
+  ],
+  "author": "Saket Kumar",
+  "license": "MIT"
+}
