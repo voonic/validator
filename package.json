@@ -2,14 +2,34 @@
   "name": "@voonic/validator",
   "version": "1.0.0",
   "description": "Allows to validate simple html fields",
-  "main": "index.js",
+  "type": "module",
+  "exports": {
+    "./validate": "./src/validate/index.js",
+    "./utils": "./src/utils/index.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --detectOpenHandles ./tests/**/*.test.js"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
   },
   "keywords": [
     "voonic",
     "validator"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:voonic/validator.git"
+  },
   "author": "Saket Kumar",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/preset-env": "^7.23.2",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-cli": "^29.7.0"
+  }
 }
