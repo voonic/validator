@@ -9,7 +9,7 @@ export default class Validator {
    * @param {string} type The input type
    */
   validate(value, schema, type) {
-    console.error("Method not implemented");
+    throw new Error("Method not implemented");
   }
 
   /**
@@ -20,7 +20,7 @@ export default class Validator {
    */
   getResponse(hasError, errorMessage) {
     if (hasError && !errorMessage) {
-      console.error("When error is set, message is required");
+      throw new Error("When error is set, message is required");
     }
     return {
       error: hasError,
