@@ -1,8 +1,8 @@
-import LengthValidator from "./LengthValidator";
-import PatternValidator from "./PatternValidator";
-import TypeValidator from "./TypeValidator";
-import ValueValidator from "./ValueValidator";
-import Validator from "./_Base";
+const LengthValidator = require('./LengthValidator');
+const PatternValidator = require('./PatternValidator');
+const TypeValidator = require('./TypeValidator');
+const ValueValidator = require('./ValueValidator');
+const Validator = require('./_Base');
 
 const ValidationTypesMap = {
   length: LengthValidator,
@@ -15,7 +15,7 @@ const ValidationTypesMap = {
  * A class for validation fatory that validates individual fields and
  * returns error if any.
  */
-export default class Factory {
+class Factory {
   /**
    * Static method for getting valitor based on schema.
    * @param {string} validationType The validation type
@@ -88,3 +88,5 @@ export default class Factory {
     return result;
   }
 }
+
+module.exports = Factory;

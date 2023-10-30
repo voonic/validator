@@ -1,9 +1,9 @@
-import Validator from "./_Base";
+const Validator = require('./_Base');
 
 /**
  * A class that implements validator for Length validation.
  */
-export default class LengthValidator extends Validator {
+class LengthValidator extends Validator {
   /**
    * @param {String} value The value of the input
    * @param {Object} schema The min and max schema
@@ -31,3 +31,5 @@ export default class LengthValidator extends Validator {
     }
   }
 }
+
+module.exports = LengthValidator;

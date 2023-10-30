@@ -1,7 +1,7 @@
 /**
  * Base class for form schema validator.
  */
-export default class Validator {
+class Validator {
   /**
    *
    * @param {*} value The input value
@@ -28,3 +28,5 @@ export default class Validator {
     };
   }
 }
+
+module.exports = Validator;

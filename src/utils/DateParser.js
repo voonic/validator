@@ -1,7 +1,7 @@
 /**
  * Date parsing class in js.
  */
-export default class DateParser {
+class DateParser {
   /**
    *
    * @param {String} dateString YYYY-MM-DD
@@ -76,3 +76,5 @@ export default class DateParser {
     return `${year}-${month}-${day}`;
   }
 }
+
+module.exports = DateParser;

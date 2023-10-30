@@ -1,2 +1,7 @@
-export { default as DateParser } from "./DateParser";
-export { default as ObjectDiff } from "./ObjectDiff";
+const DateParser = require('./DateParser');
+const ObjectDiff = require('./ObjectDiff');
+
+module.exports = {
+  DateParser,
+  ObjectDiff,
+};

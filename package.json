@@ -2,7 +2,6 @@
   "name": "@voonic/validator",
   "version": "1.0.0",
   "description": "Allows to validate simple html fields",
-  "type": "module",
   "exports": {
     "./validate": "./src/validate/index.js",
     "./utils": "./src/utils/index.js"
@@ -11,10 +10,7 @@
     "test": "jest --detectOpenHandles ./tests/**/*.test.js"
   },
   "jest": {
-    "testEnvironment": "node",
-    "transform": {
-      "^.+\\.jsx?$": "babel-jest"
-    }
+    "testEnvironment": "node"
   },
   "keywords": [
     "voonic",

@@ -1,11 +1,11 @@
-import Validator from "./_Base";
-import DateParser from "../utils/DateParser";
+const Validator = require('./_Base');
+const DateParser = require("../utils/DateParser");
 
 /**
  * A class that implements validator for value validation.
  * Only suited for numeric and date fields.
  */
-export default class ValueValidator extends Validator {
+class ValueValidator extends Validator {
   /**
    * Its the actual value, well suited for numeric and dates.
    * The dates formate are YYYY-MM-DD.
@@ -91,3 +91,5 @@ export default class ValueValidator extends Validator {
     }
   }
 }
+
+module.exports = ValueValidator;

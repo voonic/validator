@@ -40,4 +40,4 @@ const ObjectDiff = (obj1, obj2) => {
   return diff;
 };
 
-export default ObjectDiff;
+module.exports = ObjectDiff;

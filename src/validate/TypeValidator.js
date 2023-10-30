@@ -1,9 +1,9 @@
-import Validator from "./_Base";
+const Validator = require('./_Base');
 
 /**
  * A class that implements validator for type validation.
  */
-export default class TypeValidator extends Validator {
+class TypeValidator extends Validator {
   /**
    * @param {String} value The value of the input
    * @param {Object} schema The schema
@@ -46,3 +46,5 @@ export default class TypeValidator extends Validator {
     }
   }
 }
+
+module.exports = TypeValidator;

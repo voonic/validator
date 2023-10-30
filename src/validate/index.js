@@ -1,6 +1,15 @@
-export { default as LengthValidator } from "./LengthValidator";
-export { default as ValueValidator } from "./ValueValidator";
-export { default as PatternValidator } from "./PatternValidator";
-export { default as TypeValidator } from "./TypeValidator";
-export { default as Validator } from "./_Base";
-export { default as Factory } from "./Factory";
+const LengthValidator = require('./LengthValidator');
+const PatternValidator = require('./PatternValidator');
+const TypeValidator = require('./TypeValidator');
+const ValueValidator = require('./ValueValidator');
+const Validator = require('./_Base');
+const Factory = require('./Factory');
+
+module.exports = {
+  LengthValidator,
+  PatternValidator,
+  TypeValidator,
+  ValueValidator,
+  Validator,
+  Factory,
+};

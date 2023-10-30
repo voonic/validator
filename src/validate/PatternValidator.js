@@ -1,9 +1,9 @@
-import Validator from "./_Base";
+const Validator = require('./_Base');
 
 /**
  * A class that implements validator for Regex Pattern validation.
  */
-export default class PatternValidator extends Validator {
+class PatternValidator extends Validator {
   /**
    * @param {String} value The value of the input
    * @param {Object} schema The regex schema
@@ -24,3 +24,5 @@ export default class PatternValidator extends Validator {
     }
   }
 }
+
+module.exports = PatternValidator;
