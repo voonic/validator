@@ -82,9 +82,9 @@ export default class ValueValidator extends Validator {
   _checkAsDate(value, schema) {
     const date = new DateParser(value);
     const { min, max } = schema;
-    if (min && date.compareDates(min) === -1) {
+    if (min && date.compareDates(min.value) === -1) {
       return super.getResponse(true, min.errorMessage);
-    } else if (max && date.compareDates(max) === 1) {
+    } else if (max && date.compareDates(max.value) === 1) {
       return super.getResponse(true, max.errorMessage);
     } else {
       return super.getResponse(false);

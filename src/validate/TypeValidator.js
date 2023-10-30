@@ -1,4 +1,3 @@
-import DateParser from "../utils/DateParser";
 import Validator from "./_Base";
 
 /**
@@ -36,10 +35,10 @@ export default class TypeValidator extends Validator {
         return super.getResponse(true, errorMessage);
       }
     } else if (dataType === "date") {
-      try {
-        new DateParser(value);
+      let date = new Date(value);
+      if (!isNaN(date.getTime())) {
         return super.getResponse(false);
-      } catch (err) {
+      } else {
         return super.getResponse(true, errorMessage);
       }
     } else {

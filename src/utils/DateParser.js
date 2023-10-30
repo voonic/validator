@@ -45,7 +45,6 @@ export default class DateParser {
     const otherDate = new DateParser(otherDateString);
     const thisTime = this.date.getTime();
     const otherTime = otherDate.date.getTime();
-
     if (thisTime < otherTime) {
       return -1;
     } else if (thisTime > otherTime) {
