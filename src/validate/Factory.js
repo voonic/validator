@@ -48,12 +48,13 @@ class Factory {
    */
   static validateFields(data, schema) {
     const fields = Object.keys(data);
+    data.__hasValidationErrors = false;
     fields.forEach((field) => {
-      const { validate, required } = schema[field];
-      const fieldValue = data[field];
+      const { validate, required, type } = schema[field];
+      const fieldValue = data[field].value;
       let result = {};
       if (fieldValue) {
-        result = Factory.validateSchema(fieldValue, validate);
+        result = Factory.validateSingleField(fieldValue, validate, type);
       } else {
         if (required) {
           result = new Validator().getResponse(true, "Required Field");
@@ -74,15 +75,16 @@ class Factory {
    * Validates all the validation properties for a single field.
    * @param {any} fieldValue The value of the field.
    * @param {Object} validateSchema The validation schema.
+   * @param {String} type The type expected for the schema.
    * @return {Object} validation response
    */
-  static validateSingleField(fieldValue, validateSchema) {
+  static validateSingleField(fieldValue, validateSchema, type) {
     const validationRequested = Object.keys(validateSchema || {});
     let result = new Validator().getResponse(false);
     validationRequested.every((validationType) => {
       const validator = Factory.getValidator(validationType);
       const conditions = validateSchema[validationType];
-      result = validator.validate(fieldValue, conditions);
+      result = validator.validate(fieldValue, conditions, type);
       return !result.error;
     });
     return result;
