@@ -47,11 +47,14 @@ class Factory {
    * }
    */
   static validateFields(data, schema) {
+    const formResult = {
+      __hasValidationErrors: false,
+    };
     const fields = Object.keys(data);
-    data.__hasValidationErrors = false;
     fields.forEach((field) => {
+      formResult[field] = {};
       const { validate, required, type } = schema[field];
-      const fieldValue = data[field].value;
+      const fieldValue = data[field];
       let result = {};
       if (fieldValue) {
         result = Factory.validateSingleField(fieldValue, validate, type);
@@ -63,12 +66,12 @@ class Factory {
         }
       }
       if (result.error) {
-        data.__hasValidationErrors = true;
+        formResult.__hasValidationErrors = true;
       }
-      data[field].error = result.error;
-      data[field].errorMessage = result.errorMessage;
+      formResult[field].error = result.error;
+      formResult[field].errorMessage = result.errorMessage;
     });
-    return data;
+    return formResult;
   }
 
   /**

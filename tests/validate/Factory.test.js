@@ -26,8 +26,8 @@ describe('Factory', () => {
   describe('Test validateFields method', () => {
     it('should validate all fields in the data based on the schema', () => {
       const data = {
-        field1: { value: 'abc' },
-        field2: { value: 42 },
+        field1: 'abc',
+        field2: 42,
       };
       const schema = {
         field1: {
@@ -45,12 +45,10 @@ describe('Factory', () => {
       const result = Factory.validateFields(data, schema);
       expect(result).toEqual({
         field1: {
-          value: 'abc',
           error: false,
           errorMessage: undefined,
         },
         field2: {
-          value: 42,
           error: false,
           errorMessage: undefined,
         },
@@ -60,8 +58,8 @@ describe('Factory', () => {
 
     it('should throw error because of missing type in value validator', () => {
       const data = {
-        field1: { value: 'abc' },
-        field2: { value: 42 },
+        field1: 'abc',
+        field2: 42,
       };
       const schema = {
         field1: {
@@ -81,8 +79,8 @@ describe('Factory', () => {
 
     it('should handle required fields with missing values', () => {
       const data = {
-        field1: { value: 'abc' },
-        field2: { value: null },
+        field1: 'abc',
+        field2: null,
       };
       const schema = {
         field1: {
@@ -101,12 +99,10 @@ describe('Factory', () => {
 
       expect(result).toEqual({
         field1: {
-          value: 'abc',
           error: false,
           errorMessage: undefined,
         },
         field2: {
-          value: null,
           error: true,
           errorMessage: 'Required Field',
         },
@@ -116,8 +112,8 @@ describe('Factory', () => {
 
     it('should handle non-required fields with missing values', () => {
       const data = {
-        field1: { value: 'abc' },
-        field2: { value: null },
+        field1: 'abc',
+        field2: null,
       };
       const schema = {
         field1: {
@@ -136,12 +132,10 @@ describe('Factory', () => {
 
       expect(result).toEqual({
         field1: {
-          value: 'abc',
           error: false,
           errorMessage: undefined,
         },
         field2: {
-          value: null,
           error: false,
           errorMessage: undefined,
         },
