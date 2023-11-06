@@ -18,6 +18,7 @@ const ValidationTypesMap = {
  * returns error if any.
  */
 class Factory {
+
   /**
    * Static method for getting valitor based on schema.
    * @param {string} validationType The validation type
@@ -55,18 +56,7 @@ class Factory {
     const fields = Object.keys(data);
     fields.forEach((field) => {
       formResult[field] = {};
-      const { validate, required, type } = schema[field];
-      const fieldValue = data[field];
-      let result = {};
-      if (fieldValue) {
-        result = Factory.validateSingleField(fieldValue, validate, type);
-      } else {
-        if (required) {
-          result = new Validator().getResponse(true, "Required Field");
-        } else {
-          result = new Validator().getResponse(false);
-        }
-      }
+      let result = Factory.validateSingleField(field, data, schema);
       if (result.error) {
         formResult.__hasValidationErrors = true;
       }
@@ -77,22 +67,36 @@ class Factory {
   }
 
   /**
-   * Validates all the validation properties for a single field.
-   * @param {any} fieldValue The value of the field.
-   * @param {Object} validateSchema The validation schema.
-   * @param {String} type The type expected for the schema.
-   * @return {Object} validation response
+   * Validates the single field by running all validators on them.
+   * @param {string} field The field to validate
+   * @param {Object} data The overall form data
+   * @param {Object} schema The all form schema
+   * @returns {Object} the validation result for single field
    */
-  static validateSingleField(fieldValue, validateSchema, type) {
-    const validationRequested = Object.keys(validateSchema || {});
-    let result = new Validator().getResponse(false);
-    validationRequested.every((validationType) => {
-      const validator = Factory.getValidator(validationType);
-      const conditions = validateSchema[validationType];
-      result = validator.validate(fieldValue, conditions, type);
-      return !result.error;
-    });
-    return result;
+  static validateSingleField(field, data, schema) {
+    const { validate, required, type } = schema[field];
+    const fieldValue = data[field];
+    if (fieldValue) {
+      //Get all validation keys, so that we can get respective validator
+      const validateKeys = Object.keys(validate || {});
+      for (let i = 0; i < validateKeys.length; i++) {
+        const currentValidationKey = validateKeys[i];
+        const validator = Factory.getValidator(currentValidationKey);
+        const conditions = validate[currentValidationKey];
+        const dependsOnValue = validator instanceof DependsOnValidator ? data[conditions.on] : null;
+        let result = validator.validate(fieldValue, conditions, type, dependsOnValue);
+        if (result.error) {
+          return result;
+        }
+      }
+      return new Validator().getResponse(false);
+    } else {
+      if (required) {
+        return new Validator().getResponse(true, "Required Field");
+      } else {
+        return new Validator().getResponse(false);
+      }
+    }
   }
 }
 

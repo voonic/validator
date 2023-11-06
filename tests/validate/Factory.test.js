@@ -1,6 +1,5 @@
 const {
   Factory,
-  Validator,
   LengthValidator,
   ValueValidator,
   PatternValidator,
@@ -148,13 +147,21 @@ describe('Factory', () => {
 
   describe('validateSingleField method', () => {
     it('should validate a single field based on the validation schema', () => {
-      const fieldValue = 'abc';
-      const validateSchema = {
-        length: { min: { value: 1, errorMessage: 'Min length error' } },
-        pattern: { regex: /^[a-z]+$/, errorMessage: 'Pattern error' },
+      const data = {
+        field1: 'abc',
+        field2: 'tbx',
+      }
+      const schema = {
+        field1: {
+          type: "plain",
+          validate: {
+            length: { min: { value: 1, errorMessage: 'Min length error' } },
+            pattern: { regex: /^[a-z]+$/, errorMessage: 'Pattern error' },
+          },
+          required: true,
+        }
       };
-
-      const result = Factory.validateSingleField(fieldValue, validateSchema);
+      const result = Factory.validateSingleField("field1", data, schema);
 
       expect(result).toEqual({
         error: false,
@@ -163,12 +170,20 @@ describe('Factory', () => {
     });
 
     it('should stop validation on the first error', () => {
-      const fieldValue = '123';
-      const validateSchema = {
-        length: { min: { value: 5, errorMessage: 'Min length error' } },
-        pattern: { regex: /^[a-z]+$/, errorMessage: 'Pattern error' },
+      const data = {
+        field1: '123',
+      }
+      const schema = {
+        field1: {
+          type: "plain",
+          validate: {
+            length: { min: { value: 5, errorMessage: 'Min length error' } },
+            pattern: { regex: /^[a-z]+$/, errorMessage: 'Pattern error' },
+          },
+          required: true,
+        }
       };
-      const result = Factory.validateSingleField(fieldValue, validateSchema);
+      const result = Factory.validateSingleField("field1", data, schema);
       expect(result).toEqual({
         error: true,
         errorMessage: 'Min length error',
@@ -176,9 +191,16 @@ describe('Factory', () => {
     });
 
     it('should return default response if no validation types are provided', () => {
-      const fieldValue = 'abc';
-      const validateSchema = {};
-      const result = Factory.validateSingleField(fieldValue, validateSchema);
+      const data = {
+        field1: 'abc',
+      }
+      const schema = {
+        field1: {
+          type: "plain",
+          required: true,
+        }
+      };
+      const result = Factory.validateSingleField("field1", data, schema);
       expect(result).toEqual({
         error: false,
         errorMessage: undefined,
@@ -186,12 +208,20 @@ describe('Factory', () => {
     });
 
     it('should handle pattern validation error from the validator', () => {
-      const fieldValue = 'abc9';
-      const validateSchema = {
-        length: { min: { value: 1, errorMessage: 'Min length error' } },
-        pattern: { regex: /^[a-z]+$/, errorMessage: 'Pattern error' },
+      const data = {
+        field1: 'abc9',
+      }
+      const schema = {
+        field1: {
+          type: "plain",
+          required: true,
+          validate: {
+            length: { min: { value: 1, errorMessage: 'Min length error' } },
+            pattern: { regex: /^[a-z]+$/, errorMessage: 'Pattern error' },
+          }
+        }
       };
-      const result = Factory.validateSingleField(fieldValue, validateSchema);
+      const result = Factory.validateSingleField("field1", data, schema);
       expect(result).toEqual({
         error: true,
         errorMessage: 'Pattern error',

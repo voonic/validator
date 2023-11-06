@@ -2,17 +2,6 @@ const DependsOnValidator = require('../../src/validate/DependsOnValidator');
 
 describe('DependsOnValidator', () => {
   describe('validate', () => {
-    it('should throw an error if inputType and dependsType are different', () => {
-      const validator = new DependsOnValidator();
-      const schema = { on: 'inputprop-name' };
-      const inputType = 'numeric';
-      const dependsValue = 10;
-      const dependsType = 'text';
-
-      expect(() => validator.validate(5, schema, inputType, dependsValue, dependsType))
-        .toThrowError('Depends input schema type is not same');
-    });
-
     it('should validate numeric input with min constraint', () => {
       const validator = new DependsOnValidator();
       const schema = { on: 'inputprop-name', min: { value: -3, errorMessage: 'Invalid value' } };

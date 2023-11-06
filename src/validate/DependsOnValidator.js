@@ -11,6 +11,8 @@ class DependsOnValidator extends Validator {
    *
    * @param {String} value The value of the input
    * @param {Object} schema The min and max schema
+   * @param {string} inputType The input type, must be same of which it depends
+   * @param {any} dependsValue The value on which it depends
    * depends: {
    *  on: "inputprop-name"
    *  min: {
@@ -23,10 +25,7 @@ class DependsOnValidator extends Validator {
    *  },
    * }
    */
-  validate(value, schema, inputType, dependsValue, dependsType) {
-    if (inputType !== dependsType) {
-      throw new Error("Depends input schema type is not same");
-    }
+  validate(value, schema, inputType, dependsValue) {
     if (inputType === "numeric") {
       return this._checkAsNumber(value, schema, dependsValue);
     } else if (inputType === "date") {
