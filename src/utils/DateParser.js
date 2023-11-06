@@ -61,7 +61,7 @@ class DateParser {
    */
   addDays(numDays) {
     const newDate = new Date(this.date);
-    newDate.setDate(newDate.getDate() + numDays);
+    newDate.setDate(this.date.getDate() + numDays);
     return new DateParser(newDate.toISOString().split("T")[0]);
   }
 

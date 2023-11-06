@@ -6,6 +6,7 @@ const {
   PatternValidator,
   TypeValidator
 } = require("../../src");
+const DependsOnValidator = require("../../src/validate/DependsOnValidator");
 
 describe('Factory', () => {
   describe('Test getValidator method', () => {
@@ -14,6 +15,7 @@ describe('Factory', () => {
       expect(Factory.getValidator('value')).toBeInstanceOf(ValueValidator);
       expect(Factory.getValidator('pattern')).toBeInstanceOf(PatternValidator);
       expect(Factory.getValidator('type')).toBeInstanceOf(TypeValidator);
+      expect(Factory.getValidator('depends')).toBeInstanceOf(DependsOnValidator);
     });
 
     it('should throw an error for an unknown validation type', () => {

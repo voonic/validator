@@ -59,6 +59,11 @@ describe('DateParser', () => {
       const newDateParser = dateParser.addDays(5);
       expect(newDateParser.getFormattedDate()).toBe('2023-11-03');
     });
+    test('should add the correct number of days to the date', () => {
+      const dateParser = new DateParser('2023-12-30');
+      const newDateParser = dateParser.addDays(2);
+      expect(newDateParser.getFormattedDate()).toBe('2024-01-01');
+    });
     test('should subtract the correct number of days to the date if negative', () => {
       const dateParser = new DateParser('2023-10-29');
       const newDateParser = dateParser.addDays(-3);
