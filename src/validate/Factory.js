@@ -1,5 +1,6 @@
 const DependsOnValidator = require('./DependsOnValidator');
 const LengthValidator = require('./LengthValidator');
+const OptionsValidator = require('./OptionsValidator');
 const PatternValidator = require('./PatternValidator');
 const TypeValidator = require('./TypeValidator');
 const ValueValidator = require('./ValueValidator');
@@ -11,6 +12,7 @@ const ValidationTypesMap = {
   pattern: PatternValidator,
   type: TypeValidator,
   depends: DependsOnValidator,
+  options: OptionsValidator
 };
 
 /**
