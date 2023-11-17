@@ -7,7 +7,7 @@ const Validator = require('./_Base');
  */
 class OptionsValidator extends Validator {
   /**
-   * @param {String} value The value of the input using seperator ###
+   * @param {Array} value The value of the input is Array
    * @param {Object} schema The min and max schema
    * "values": [
    *    {
@@ -33,11 +33,13 @@ class OptionsValidator extends Validator {
    */
   validate(value, schema, _) {
     const { min, max, values } = schema;
-    const userValues = value.split("###");
+    if (!Array.isArray(value)) {
+      return super.getResponse(true, "Invalid value type supplied");
+    }
     let allContained =
-      userValues.every(userValue => values.some(v => v.value === userValue));
+      value.every(userValue => values.some(v => v.value === userValue));
     if (allContained) {
-      var userValuesSet = new Set(userValues);
+      var userValuesSet = new Set(value);
       if (min && userValuesSet.size < min.value) {
         return super.getResponse(true, min.errorMessage);
       } else if (max && userValuesSet.size > max.value) {
