@@ -1,12 +1,15 @@
 /**
- * Compares two object and return difference keys and values.
- * The values returned will be always from second object (obj2)
+ * Compares two objects and returns the difference in keys and values.
+ * The values returned will always be from the second object (obj2).
  * @param {Object} obj1 The old value
  * @param {Object} obj2 The new value
  * @return {Object} The difference
  */
-const ObjectDiff = (obj1, obj2) => {
-  const diff = {};
+const ObjectDiff = (
+  obj1: Record<string, any>,
+  obj2: Record<string, any>
+): Record<string, any> => {
+  const diff: Record<string, any> = {};
 
   for (const key in obj1) {
     if (Object.prototype.hasOwnProperty.call(obj1, key)) {
@@ -30,8 +33,10 @@ const ObjectDiff = (obj1, obj2) => {
   }
 
   for (const key in obj2) {
-    if (Object.prototype.hasOwnProperty.call(obj2, key) &&
-      !Object.prototype.hasOwnProperty.call(obj1, key)) {
+    if (
+      Object.prototype.hasOwnProperty.call(obj2, key) &&
+      !Object.prototype.hasOwnProperty.call(obj1, key)
+    ) {
       // Key is present in obj2 but not in obj1
       diff[key] = obj2[key];
     }
@@ -40,4 +45,4 @@ const ObjectDiff = (obj1, obj2) => {
   return diff;
 };
 
-module.exports = ObjectDiff;
+export { ObjectDiff };
