@@ -2,7 +2,7 @@
  * Date parsing class in TypeScript.
  */
 class DateParser {
-  private date: Date;
+  readonly date: Date;
 
   /**
    *
