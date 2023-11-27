@@ -42,6 +42,9 @@ export class Validator<S, T> implements BaseValidator<S, T> {
   }
 
   fail(errorMessage: string): FailFieldResponse {
+    if (!errorMessage) {
+      throw new Error("When error is set, message is required");
+    }
     return {
       error: true,
       errorMessage: errorMessage,

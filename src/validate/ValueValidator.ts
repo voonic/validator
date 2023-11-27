@@ -7,13 +7,11 @@ import {
 } from "./_Base";
 
 export type NumberValueValidatorProps = {
-  type: "number";
   min?: MinMaxOptionsProps;
   max?: MinMaxOptionsProps;
 };
 
 export type StringDateValueValidatorProps = {
-  type: "date";
   min?: {
     value: string;
     errorMessage: string;
@@ -41,7 +39,7 @@ export class ValueValidator extends Validator<
    * The dates formate are YYYY-MM-DD.
    * @param value The value of the input
    * @param schema The min and max schema
-   * @param type The input type
+   * @param _ The input type
    * {
    *  min: {
    *    value: number,
@@ -56,32 +54,22 @@ export class ValueValidator extends Validator<
   validate(
     value: number,
     schema: ValueValidatorProps,
-    type: string
+    _: string
   ): SuccessFieldResponse | FailFieldResponse;
   validate(
     value: string,
     schema: ValueValidatorProps,
-    type: string
+    _: string
   ): SuccessFieldResponse | FailFieldResponse;
-  validate(value: string | number, schema: ValueValidatorProps, type: string) {
-    if (type === "numeric" && typeof value === "number") {
-      if (schema.type === "number") {
-        return this._checkAsNumber(value, schema);
-      } else {
-        throw new Error(
-          `Input type is numeric but schema value is not a number`
-        );
-      }
-    } else if (type === "date" && typeof value === "string") {
-      if (schema.type === "date") {
-        return this._checkAsDate(value, schema);
-      } else {
-        throw new Error(
-          `Input type is date but schema value is not a string date`
-        );
-      }
+  validate(value: string | number, schema: ValueValidatorProps, _: string) {
+    if (typeof value === "number") {
+      return this._checkAsNumber(value, schema as NumberValueValidatorProps);
+    } else if (typeof value === "string") {
+      return this._checkAsDate(value, schema as StringDateValueValidatorProps);
     } else {
-      throw new Error(`Unsupported input type: ${type} in ValueValidator`);
+      throw new Error(
+        `Unsupported input value type: ${typeof value} in ValueValidator`
+      );
     }
   }
 

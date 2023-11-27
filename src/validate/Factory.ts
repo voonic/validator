@@ -118,10 +118,7 @@ export class Factory {
     const fields = Object.keys(data);
     fields.forEach((field) => {
       let result = Factory.validateSingleField(field, data, schema);
-      formResult.result[field] = {
-        error: result.error,
-        errorMessage: result.errorMessage ? result.errorMessage : "",
-      };
+      formResult.result[field] = result;
       if (result.error) {
         formResult.error = true;
       }

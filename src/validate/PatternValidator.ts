@@ -32,5 +32,3 @@ export class PatternValidator extends Validator<string, PatternValidatorProps> {
     }
   }
 }
-
-module.exports = PatternValidator;
