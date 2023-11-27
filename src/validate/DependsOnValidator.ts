@@ -12,7 +12,10 @@ export type DependsOnValidatorProps = {
   max?: MinMaxOptionsProps;
 };
 
-export class DependsOnValidator extends Validator {
+export class DependsOnValidator extends Validator<
+  number | string,
+  DependsOnValidatorProps
+> {
   /**
    * Its the actual value, well suited for numeric and dates.
    * The dates formate are YYYY-MM-DD.

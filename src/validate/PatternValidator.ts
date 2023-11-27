@@ -8,7 +8,7 @@ export type PatternValidatorProps = {
 /**
  * A class that implements validator for Regex Pattern validation.
  */
-export class PatternValidator extends Validator {
+export class PatternValidator extends Validator<string, PatternValidatorProps> {
   /**
    * @param value The value of the input
    * @param schema The regex schema

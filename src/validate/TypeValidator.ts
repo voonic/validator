@@ -8,7 +8,10 @@ export type TypeValidatorProps = {
 /**
  * A class that implements validator for type validation.
  */
-export class TypeValidator extends Validator {
+export class TypeValidator extends Validator<
+  number | string | boolean,
+  TypeValidatorProps
+> {
   /**
    * @param value The value of the input
    * @param schema The schema

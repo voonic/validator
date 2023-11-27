@@ -21,7 +21,10 @@ export type OptionsValidatorProps = {
  * This is good for validation select options from which user select
  * fixed predefined values.
  */
-export class OptionsValidator extends Validator {
+export class OptionsValidator extends Validator<
+  string[],
+  OptionsValidatorProps
+> {
   /**
    * @param value The value of the input is Array
    * @param schema The min and max schema

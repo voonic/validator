@@ -13,7 +13,7 @@ export type LengthValidatorProps = {
 /**
  * A class that implements validator for Length validation.
  */
-export class LengthValidator extends Validator {
+export class LengthValidator extends Validator<string, LengthValidatorProps> {
   /**
    * {
    *  min: {

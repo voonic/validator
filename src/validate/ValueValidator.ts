@@ -32,7 +32,10 @@ export type ValueValidatorProps =
  * A class that implements validator for value validation.
  * Only suited for numeric and date fields.
  */
-export class ValueValidator extends Validator {
+export class ValueValidator extends Validator<
+  number | string,
+  ValueValidatorProps
+> {
   /**
    * Its the actual value, well suited for numeric and dates.
    * The dates formate are YYYY-MM-DD.
