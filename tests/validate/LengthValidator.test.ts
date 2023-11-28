@@ -1,7 +1,7 @@
 import { LengthValidator } from "../../src/validate";
 
 describe("LengthValidator", () => {
-  let lengthValidator;
+  let lengthValidator: LengthValidator;
 
   beforeEach(() => {
     lengthValidator = new LengthValidator();

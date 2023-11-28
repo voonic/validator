@@ -28,7 +28,6 @@ export class OptionsValidator extends Validator<
   /**
    * @param value The value of the input is Array
    * @param schema The min and max schema
-   * @param _ The input type
    * "values": [
    *    {
    *      "value": "Convention",
@@ -51,8 +50,7 @@ export class OptionsValidator extends Validator<
    */
   validate(
     value: string[],
-    schema: OptionsValidatorProps,
-    _: string
+    schema: OptionsValidatorProps
   ): SuccessFieldResponse | FailFieldResponse {
     const { min, max, values } = schema;
     if (!Array.isArray(value)) {

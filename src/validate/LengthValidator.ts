@@ -27,12 +27,10 @@ export class LengthValidator extends Validator<string, LengthValidatorProps> {
    * }
    * @param value The value of the input
    * @param schema The min and max schema
-   * @param {string} _ The input type
    */
   validate(
     value: string,
-    schema: LengthValidatorProps,
-    _: string
+    schema: LengthValidatorProps
   ): SuccessFieldResponse | FailFieldResponse {
     const { min, max } = schema;
     if (min && value.length < min.value) {

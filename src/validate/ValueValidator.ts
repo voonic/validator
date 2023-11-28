@@ -39,7 +39,6 @@ export class ValueValidator extends Validator<
    * The dates formate are YYYY-MM-DD.
    * @param value The value of the input
    * @param schema The min and max schema
-   * @param _ The input type
    * {
    *  min: {
    *    value: number,
@@ -53,15 +52,13 @@ export class ValueValidator extends Validator<
    */
   validate(
     value: number,
-    schema: ValueValidatorProps,
-    _: string
+    schema: ValueValidatorProps
   ): SuccessFieldResponse | FailFieldResponse;
   validate(
     value: string,
-    schema: ValueValidatorProps,
-    _: string
+    schema: ValueValidatorProps
   ): SuccessFieldResponse | FailFieldResponse;
-  validate(value: string | number, schema: ValueValidatorProps, _: string) {
+  validate(value: string | number, schema: ValueValidatorProps) {
     if (typeof value === "number") {
       return this._checkAsNumber(value, schema as NumberValueValidatorProps);
     } else if (typeof value === "string") {

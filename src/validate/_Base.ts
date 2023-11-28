@@ -17,7 +17,6 @@ export type BaseValidator<S, T> = {
   validate(
     data: S,
     additionalArg: T,
-    type: string,
     dependsOnValue?: S
   ): FailFieldResponse | SuccessFieldResponse;
 };
@@ -29,7 +28,6 @@ export class Validator<S, T> implements BaseValidator<S, T> {
   validate(
     data: S,
     additionalArg: T,
-    type: string,
     dependsOnValue?: S
   ): FailFieldResponse | SuccessFieldResponse {
     throw new Error("Method not implemented");

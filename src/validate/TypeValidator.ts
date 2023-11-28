@@ -6,7 +6,7 @@ export type TypeValidatorProps = {
 };
 
 /**
- * A class that implements validator for type validation.
+ * A class that implements validator for input value data type validation.
  */
 export class TypeValidator extends Validator<
   number | string | boolean,
@@ -15,7 +15,6 @@ export class TypeValidator extends Validator<
   /**
    * @param value The value of the input
    * @param schema The schema
-   * @param _ The input type
    * {
    *    type: string|number|date|boolean,
    *    errorMessage: String,
@@ -23,24 +22,17 @@ export class TypeValidator extends Validator<
    */
   validate(
     value: number,
-    schema: TypeValidatorProps,
-    _: string
+    schema: TypeValidatorProps
   ): SuccessFieldResponse | FailFieldResponse;
   validate(
     value: string,
-    schema: TypeValidatorProps,
-    _: string
+    schema: TypeValidatorProps
   ): SuccessFieldResponse | FailFieldResponse;
   validate(
     value: boolean,
-    schema: TypeValidatorProps,
-    _: string
+    schema: TypeValidatorProps
   ): SuccessFieldResponse | FailFieldResponse;
-  validate(
-    value: number | string | boolean,
-    schema: TypeValidatorProps,
-    _: string
-  ) {
+  validate(value: number | string | boolean, schema: TypeValidatorProps) {
     const { type, errorMessage } = schema;
     if (type === "number") {
       if (typeof value === "number") {

@@ -12,7 +12,6 @@ export class PatternValidator extends Validator<string, PatternValidatorProps> {
   /**
    * @param value The value of the input
    * @param schema The regex schema
-   * @param _ The input type
    * {
    *    regex: regex,
    *    errorMessage: String,
@@ -20,8 +19,7 @@ export class PatternValidator extends Validator<string, PatternValidatorProps> {
    */
   validate(
     value: string,
-    schema: PatternValidatorProps,
-    _: string
+    schema: PatternValidatorProps
   ): SuccessFieldResponse | FailFieldResponse {
     const { regex, errorMessage } = schema;
     const pattern = new RegExp(regex);

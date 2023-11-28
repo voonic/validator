@@ -25,7 +25,6 @@ export class DependsOnValidator extends Validator<
    *
    * @param value The value of the input
    * @param schema The min and max schema
-   * @param inputType The input type, must be same of which it depends
    * @param dependsValue The value on which it depends
    * depends: {
    *  on: "inputprop-name"
@@ -42,36 +41,25 @@ export class DependsOnValidator extends Validator<
   validate(
     value: number,
     schema: DependsOnValidatorProps,
-    inputType: "numeric",
     dependsValue: number
   ): SuccessFieldResponse | FailFieldResponse;
   validate(
     value: string,
     schema: DependsOnValidatorProps,
-    inputType: "date",
     dependsValue: string
   ): SuccessFieldResponse | FailFieldResponse;
   validate(
     value: string | number,
     schema: DependsOnValidatorProps,
-    inputType: "numeric" | "date",
     dependsValue: string | number
   ): SuccessFieldResponse | FailFieldResponse {
-    if (
-      inputType === "numeric" &&
-      typeof value === "number" &&
-      typeof dependsValue === "number"
-    ) {
+    if (typeof value === "number" && typeof dependsValue === "number") {
       return this._checkAsNumber(value, schema, dependsValue);
-    } else if (
-      inputType === "date" &&
-      typeof value === "string" &&
-      typeof dependsValue === "string"
-    ) {
+    } else if (typeof value === "string" && typeof dependsValue === "string") {
       return this._checkAsDate(value, schema, dependsValue);
     } else {
       throw new Error(
-        "Unknown input type in ValueValidator, works only for date and numeric"
+        "Unknown input value type in ValueValidator, works only for date and numeric values"
       );
     }
   }

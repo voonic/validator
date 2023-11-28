@@ -14,7 +14,6 @@ export declare class DependsOnValidator extends Validator<number | string, Depen
      *
      * @param value The value of the input
      * @param schema The min and max schema
-     * @param inputType The input type, must be same of which it depends
      * @param dependsValue The value on which it depends
      * depends: {
      *  on: "inputprop-name"
@@ -28,8 +27,8 @@ export declare class DependsOnValidator extends Validator<number | string, Depen
      *  },
      * }
      */
-    validate(value: number, schema: DependsOnValidatorProps, inputType: "numeric", dependsValue: number): SuccessFieldResponse | FailFieldResponse;
-    validate(value: string, schema: DependsOnValidatorProps, inputType: "date", dependsValue: string): SuccessFieldResponse | FailFieldResponse;
+    validate(value: number, schema: DependsOnValidatorProps, dependsValue: number): SuccessFieldResponse | FailFieldResponse;
+    validate(value: string, schema: DependsOnValidatorProps, dependsValue: string): SuccessFieldResponse | FailFieldResponse;
     _checkAsNumber(value: number, schema: DependsOnValidatorProps, dependsValue: number): SuccessFieldResponse | FailFieldResponse;
     _checkAsDate(value: string, schema: DependsOnValidatorProps, dependsValue: string): SuccessFieldResponse | FailFieldResponse;
 }

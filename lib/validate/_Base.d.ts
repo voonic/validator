@@ -11,13 +11,13 @@ export type MinMaxOptionsProps = {
     errorMessage: string;
 };
 export type BaseValidator<S, T> = {
-    validate(data: S, additionalArg: T, type: string, dependsOnValue?: S): FailFieldResponse | SuccessFieldResponse;
+    validate(data: S, additionalArg: T, dependsOnValue?: S): FailFieldResponse | SuccessFieldResponse;
 };
 /**
  * Base class for form schema validator.
  */
 export declare class Validator<S, T> implements BaseValidator<S, T> {
-    validate(data: S, additionalArg: T, type: string, dependsOnValue?: S): FailFieldResponse | SuccessFieldResponse;
+    validate(data: S, additionalArg: T, dependsOnValue?: S): FailFieldResponse | SuccessFieldResponse;
     success(errorMessage?: string): SuccessFieldResponse;
     fail(errorMessage: string): FailFieldResponse;
 }

@@ -1,7 +1,7 @@
 import { ValueValidator } from "../../src/validate";
 
 describe("ValueValidator", () => {
-  let valueValidator;
+  let valueValidator: ValueValidator;
 
   beforeEach(() => {
     valueValidator = new ValueValidator();
@@ -14,8 +14,7 @@ describe("ValueValidator", () => {
         min: { value: 10, errorMessage: "Min error" },
         max: { value: 50, errorMessage: "Max error" },
       };
-      const type = "numeric";
-      const result = valueValidator.validate(value, schema, type);
+      const result = valueValidator.validate(value, schema);
 
       expect(result).toEqual({
         error: false,
@@ -26,8 +25,7 @@ describe("ValueValidator", () => {
     it("should return an error for numeric input below the min range", () => {
       const value = 5;
       const schema = { min: { value: 10, errorMessage: "Min error" } };
-      const type = "numeric";
-      const result = valueValidator.validate(value, schema, type);
+      const result = valueValidator.validate(value, schema);
 
       expect(result).toEqual({
         error: true,
@@ -38,8 +36,7 @@ describe("ValueValidator", () => {
     it("should return an error for numeric input above the max range", () => {
       const value = 60;
       const schema = { max: { value: 50, errorMessage: "Max error" } };
-      const type = "numeric";
-      const result = valueValidator.validate(value, schema, type);
+      const result = valueValidator.validate(value, schema);
 
       expect(result).toEqual({
         error: true,
@@ -53,8 +50,7 @@ describe("ValueValidator", () => {
         min: { value: "2023-01-01", errorMessage: "Min error" },
         max: { value: "2023-01-31", errorMessage: "Max error" },
       };
-      const type = "date";
-      const result = valueValidator.validate(value, schema, type);
+      const result = valueValidator.validate(value, schema);
 
       expect(result).toEqual({
         error: false,
@@ -67,8 +63,7 @@ describe("ValueValidator", () => {
       const schema = {
         min: { value: "2023-01-01", errorMessage: "Min error" },
       };
-      const type = "date";
-      const result = valueValidator.validate(value, schema, type);
+      const result = valueValidator.validate(value, schema);
 
       expect(result).toEqual({
         error: true,
@@ -81,8 +76,7 @@ describe("ValueValidator", () => {
       const schema = {
         max: { value: "2023-01-31", errorMessage: "Max error" },
       };
-      const type = "date";
-      const result = valueValidator.validate(value, schema, type);
+      const result = valueValidator.validate(value, schema);
 
       expect(result).toEqual({
         error: true,
@@ -96,9 +90,9 @@ describe("ValueValidator", () => {
         min: { value: 1, errorMessage: "Min error" },
         max: { value: 100, errorMessage: "Max error" },
       };
-      const type = "plain";
       expect(() => {
-        valueValidator.validate(value, schema, type);
+        // @ts-ignore
+        valueValidator.validate(value, schema);
       }).toThrow("Unsupported input value type: boolean in ValueValidator");
     });
   });

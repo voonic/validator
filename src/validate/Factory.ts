@@ -155,7 +155,6 @@ export class Factory {
           let result = validatorInstance.validate(
             fieldValue,
             conditions,
-            type,
             dependsOnValue
           );
           if (result.error) {

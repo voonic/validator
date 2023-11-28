@@ -1,7 +1,7 @@
 import { PatternValidator } from "../../src/validate";
 
 describe("PatternValidator", () => {
-  let patternValidator;
+  let patternValidator: PatternValidator;
 
   beforeEach(() => {
     patternValidator = new PatternValidator();
@@ -11,7 +11,7 @@ describe("PatternValidator", () => {
     it("should return no error when value matches the specified regex pattern", () => {
       const value = "abc123";
       const schema = { regex: "^[a-z0-9]+$", errorMessage: "Pattern error" };
-      const result = patternValidator.validate(value, schema, "");
+      const result = patternValidator.validate(value, schema);
 
       expect(result).toEqual({
         error: false,
@@ -22,7 +22,7 @@ describe("PatternValidator", () => {
     it("should return an error when value does not match the specified regex pattern", () => {
       const value = "abc@123";
       const schema = { regex: "^[a-z0-9]+$", errorMessage: "Pattern error" };
-      const result = patternValidator.validate(value, schema, "");
+      const result = patternValidator.validate(value, schema);
 
       expect(result).toEqual({
         error: true,
@@ -33,7 +33,7 @@ describe("PatternValidator", () => {
     it("should handle case-insensitive regex patterns", () => {
       const value = "ABC";
       const schema = { regex: "^[a-z]+$", errorMessage: "Pattern error" };
-      const result = patternValidator.validate(value, schema, "");
+      const result = patternValidator.validate(value, schema);
 
       expect(result).toEqual({
         error: true,
@@ -47,7 +47,7 @@ describe("PatternValidator", () => {
         regex: "^\\d{3}-\\d{3}$",
         errorMessage: "Pattern error",
       };
-      const result = patternValidator.validate(value, schema, "");
+      const result = patternValidator.validate(value, schema);
 
       expect(result).toEqual({
         error: false,

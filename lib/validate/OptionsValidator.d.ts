@@ -17,7 +17,6 @@ export declare class OptionsValidator extends Validator<string[], OptionsValidat
     /**
      * @param value The value of the input is Array
      * @param schema The min and max schema
-     * @param _ The input type
      * "values": [
      *    {
      *      "value": "Convention",
@@ -38,5 +37,5 @@ export declare class OptionsValidator extends Validator<string[], OptionsValidat
      *  },
      * }
      */
-    validate(value: string[], schema: OptionsValidatorProps, _: string): SuccessFieldResponse | FailFieldResponse;
+    validate(value: string[], schema: OptionsValidatorProps): SuccessFieldResponse | FailFieldResponse;
 }

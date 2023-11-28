@@ -10,11 +10,10 @@ export declare class PatternValidator extends Validator<string, PatternValidator
     /**
      * @param value The value of the input
      * @param schema The regex schema
-     * @param _ The input type
      * {
      *    regex: regex,
      *    errorMessage: String,
      * }
      */
-    validate(value: string, schema: PatternValidatorProps, _: string): SuccessFieldResponse | FailFieldResponse;
+    validate(value: string, schema: PatternValidatorProps): SuccessFieldResponse | FailFieldResponse;
 }
